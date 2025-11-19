@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ngay 5</title>
+
+    <!-- CSS -->
+    <style>
+        h1{
+            font-size: 30px;
+            color: chocolate;
+        }
+        p{
+            font-size: 20px;
+            color: #333333;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test JS trong console ==></h1>
+    <p id="txt">Mang tren la mang palindrome: </p>
+    <p id="txt2">Test phuong trinh bac 2</p>
+    <p id="txt3"></p>
+    <p id="txt4"></p>
+    <p id="txt5"></p>
+    <p id="daychan">add la: </p>
+    <p id="b1"></p>
+    <p id="b3"></p>
+
+    <!-- JS -->
+    <script>
+
+        //- Viết hàm kiểm tra một chuỗi có phải là palindrome.
+        let manggoc = "NgHieu EiHGn";
+        function pld(mang){
+            let cleanmang = mang.toLowerCase().replace(/\s+/g, '');
+            let rev = cleanmang.split('').reverse().join('');
+            return rev === cleanmang ;
+        }
+        setTimeout(function(){
+        document.getElementById('txt').innerHTML = "Mang tren la mang palindrome: " + pld(manggoc);
+        console.log(pld(manggoc));
+        }, 3000);
+
+
+        //- Viêt function phương trình bậc 2 in ra nghiệm đầu vào là 3 số a,b,c
+        function ptb2(a,b,c){
+            let delta = b * b - 4 * a * c;
+            if (delta < 0) {
+                document.getElementById('txt3').innerHTML = "Phuong trinh vo nghiem";
+            } else if (delta === 0){
+                let x = -b / (2 * a);
+                document.getElementById('txt3').innerHTML = "Phuong trinh co 1 nghiem kep: " + x;
+            } else {
+                let x1 = (-b + Math.sqrt(delta)) / (2 * a);
+                let x2 = (-b - Math.sqrt(delta)) / (2 * a);
+                document.getElementById('txt3').innerHTML = "Phuong trinh co 2 nghiem phan biet: ";
+                document.getElementById('txt4').innerHTML = "X1 = " + x1;
+                document.getElementById('txt5').innerHTML = "X2 = " + x2;
+            }
+        }
+        ptb2(1,-4,4); //(1,-3,2)
+
+
+        //Scope
+        let x = 10;
+        function demo(){
+            console.log(`So x la: ${x}`)
+        }
+        demo();
+        console.log(`So x lan thu 2 la: ${x}`);
+
+        //Closure
+        function cout(){
+            let count = 0;
+
+            function cin(){
+                count++;
+                console.log(count);
+            }
+            return cin;
+        }
+        let c = cout();
+        c();
+        c();
+        c();
+
+
+        function add(z){
+            return function(y){
+                return z + y
+            }
+        }
+        let add1 = add(5);
+
+        setTimeout(function(){
+        document.getElementById('daychan').innerHTML = "add la: " + add1(15);
+        console.log(add1(10));
+        console.log(add1(2));
+        }, 4000);
+    </script>
+</body>
+</html>
