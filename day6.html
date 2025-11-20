@@ -21,11 +21,11 @@
 </head>
 <body>
     <h1>Test JS trong console ==></h1>
-    <p id="txt1"></p>
-    <p id="txt2"></p>
-    <p id="txt3"></p>
+    <p id="txt1">Bo nho la: </p>
+    <p id="txt2">Bo nho 2 la: </p>
+    <p id="txt3">Ket qua cuoi cung: </p>
     <p id="txt4"></p>
-    <p id="txt5"></p>
+    <p id="txt5">Du lieu API -> </p>
     <p id="txt6"></p>
     <p id="test1"></p>
     <p id="test2"></p>
@@ -45,10 +45,76 @@
             }
         }
         const boNho = taoBoNho(20);
-        console.log(boNho.getValue());
+        setTimeout(function(){
+        document.getElementById('txt1').innerHTML = "Bo nho la: " + boNho.getValue();
+        console.log(`bo nho 1: ${boNho.getValue()}`);    
+        },3000);
+        setTimeout(function(){
         boNho.setValue(50);
-        console.log(boNho.getValue());
+        document.getElementById('txt2').innerHTML = "Bo nho 2 la: " + boNho.getValue();
+        console.log(`bo nho 2: ${boNho.getValue()}`);    
+        },3500);
 
+        //Promise
+        const p = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const succes = true; 
+                if (succes) resolve("Xong roi !!!");
+                else reject(new Error("Co loi roi ??"));
+            },2000);
+        });
+        p.then(value => {
+            console.log("Thanh cong");
+        }).catch(err => {
+            console.error("Loi", err);
+        });
+
+            //--test Promise
+        function step1(){
+            return Promise.resolve(10);
+        };
+        function step2(x){
+            return Promise.resolve(x * 2);
+        };
+        function step3(x){
+            return Promise.resolve(x + 2);
+        };
+        step1()
+        .then(kq => step2(kq))
+        .then(kq => step3(kq))
+        .then(final => document.getElementById('txt3').innerHTML = "Ket qua cuoi cung: " + final)
+        .catch(err => document.getElementById('txt4').innerHTML = "Loi o dau do??" + err );
+
+
+        //- Viết một hàm trả về Promise để tải dữ liệu từ một API giả lập.
+        function API(){
+            return new Promise((resolve1, reject1) => {
+                console.log("Dang load du lieu");
+                setTimeout(() => {
+                    const succes1 = true    ;
+                    if (succes1) {
+                        resolve1({
+                            id: 1,
+                            name: "Nguyen Duc Hieu",
+                            age: 10
+                        });
+                    } else {
+                        reject1("Loi: kh ket noi duoc API");
+                    };
+                }, 1500);
+            });
+        };
+        setTimeout(function(){
+        API()
+            .then(data => {
+                document.getElementById('txt5').innerHTML = "Du lieu API -> " + JSON.stringify(data);
+                console.log("Du lieu nhan duoc la:" ,data)
+            })
+            .catch(err1 => {
+                document.getElementById('txt5').innerHTML = "Du lieu API -> " + err1;
+                console.log("Loi: Khong tai duoc thong tin API!!!", err1)
+            });
+        }, 4000);
 
     </script>
 </body>
