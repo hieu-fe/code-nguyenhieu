@@ -50,6 +50,8 @@
             });
         };
         setTimeout(function(){
+
+        //- Sử dụng then để xử lý kết quả khi Promise được giải quyết và catch khi có lỗi.
             thongTin()
             .then(data => {
                 document.getElementById('txt1').innerHTML = "Thong tin sinh vien la: " + JSON.stringify(data);
@@ -60,6 +62,8 @@
                 console.log("Loi du lieu !!!" ,err);
             })
         });
+
+        //
     </script>
 </body>
 </html>
