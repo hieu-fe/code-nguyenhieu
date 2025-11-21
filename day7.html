@@ -63,7 +63,35 @@
             })
         });
 
-        //
+        //test
+        const c1 = new Promise(resolve => setTimeout(() => resolve("API 1 xong"), 1000));
+        const c2 = new Promise(resolve => setTimeout(() => resolve("API 2 xong"), 1000));
+        const c3 = new Promise(resolve => setTimeout(() => resolve("API 3 xong"), 1000));
+        Promise.all([c1,c2,c3])
+        .then( kq => {
+            console.log(kq);
+        })
+        .catch(err1 =>{
+            console.log("Loi roi" , +err1);
+        })
+
+        const c4 = new Promise((resolve1, reject1) => 
+        setTimeout(() =>{
+            const x = false;
+            if (x){
+                resolve1("API 4 done");
+            } else {
+                reject1("API - Loi !!!");
+            }
+        }, 1000)
+        );
+        Promise.all([c1,c2,c3,c4])
+        .then (kq1 => {
+            console.log(kq1)   
+        })
+        .catch ( err2 =>{
+            console.log("Loi roi")
+        })
     </script>
 </body>
 </html>
