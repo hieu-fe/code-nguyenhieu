@@ -19,10 +19,29 @@
 
     <div id="day8_lesson2">
         <button id="btnUser">Print</button><br>
-        <input type="text" id="inputUser">
+        <input type="text" id="inputUser" placeholder="1 -> 4" required>
         <div id="txtUser">Nguoi dung </div>
     </div>
 
+    <!-- day9 -->
+    <h1>Day 9</h1>
+    <h2>List post</h2>
+    <div id="postBlock"></div>
+    <button type="button" id="getObject">Get Object</button>
+
+    <h2>Add Post</h2>
+    <form id="create-form">
+        <p>Title: </p><br>
+        <input type="text" id="title" required><br><br>
+        <p>Body: </p><br>
+        <input type="text" id="body" required><br><br>
+        <button type="submit">Post Object</button>
+    </form>
+
+    <p>Kết quả: </p>
+    <pre id="result"></pre>
+
     <script src="./day8.js"></script>
+    <script src="./day9.js"></script>
 </body>
 </html>
